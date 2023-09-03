@@ -1,15 +1,15 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
-body{
-    background: darkgray;
-    overflow: hidden;
-    text-align: center;
+body {
+	background: darkgray;
+	overflow: hidden;
+	text-align: center;
 }
 
-#myCanvas{
-    background: lightgray;
+#myCanvas {
+	background: lightgray;
 }

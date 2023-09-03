@@ -18,6 +18,7 @@ animate()
 
 function animate() {
 	car.update()
+
 	canvas.height = window.innerHeight
 	FrameCounter.fpsUpdate()
 
@@ -28,5 +29,6 @@ function animate() {
 	car.draw(ctx)
 
 	ctx.restore()
+
 	requestAnimationFrame(animate)
 }

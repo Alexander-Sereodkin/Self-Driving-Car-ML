@@ -1,7 +1,9 @@
 class Road {
 	constructor({ x, width, laneCount = 3 }) {
 		this.x = x
+		// Ширина дороги
 		this.width = width
+		// Кол-во полос движения
 		this.laneCount = laneCount
 
 		// крайшне левое положение
@@ -63,7 +65,9 @@ class Road {
 			ctx.lineTo(x, this.bottom)
 			ctx.stroke()
 		}
+
 		ctx.setLineDash([])
+		// Рисуем границы дороги
 		this.borders.forEach((border) => {
 			ctx.beginPath()
 			ctx.moveTo(border[0].x, border[0].y)
