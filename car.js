@@ -9,6 +9,10 @@ class Car {
         this.controls = new Controls()
 	}
 
+    update(){
+        
+    }
+
 	draw(ctx) {
         // Отрисовка машинки с х, y по центру
 		ctx.beginPath()
