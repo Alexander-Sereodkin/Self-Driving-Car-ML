@@ -17,7 +17,7 @@ const car = new Car({
 animate()
 
 function animate() {
-	car.update()
+	car.update(road.borders)
 
 	canvas.height = window.innerHeight
 	FrameCounter.fpsUpdate()

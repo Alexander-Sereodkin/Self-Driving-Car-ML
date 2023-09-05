@@ -2,16 +2,57 @@ class Sensor {
 	constructor({ car }) {
 		this.car = car
 		// Кол-во лучей-датчиков
-		this.rayCount = 4
+		this.rayCount = 5
 		// Длинна луча-датчика
 		this.rayLength = 200
 		// Угол распространения лучей-датчиков
 		this.raySpread = Math.PI / 2
 		// Массив лучей-датчиков
 		this.rays = []
+
+		this.reading = []
 	}
 
-	update() {
+	update(roadBorders) {
+		// Вычитываем лучи
+		this.#castRays()
+
+		this.reading = []
+
+		// Проходим наши лучи-датчики
+		for (let i = 0; i < this.rays.length; i++) {
+			this.reading.push(
+				// И считываем их данные
+				this.#getReading(this.rays[i], roadBorders)
+			)
+		}
+	}
+
+	// Считывание данных с датчика
+	#getReading(ray, roadBorders) {
+		const touches = []
+
+		for (let i = 0; i < this.roadBorders; i++) {
+			// Получаем пересечения лучей-датчиков и borders
+			const touch = getIntersection(
+				ray[0],
+				ray[1],
+				roadBorders[i][0],
+				roadBorders[i][1]
+			)
+			if (touch) {
+				touches.push(touch)
+			}
+		}
+		// Если косаний лучей-датчиков нет
+		if (touches.length === 0) return null
+		// Получаем массив смешеней
+		const offsets = touches.map(e=> e.offset)
+		const minOffset = Math.min(...offsets)
+		return touches.find(e => e.offset === minOffset)
+	}
+
+	#castRays() {
 		this.rays = []
 		for (let i = 0; i < this.rayCount; i++) {
 			// Угол наклона луча
