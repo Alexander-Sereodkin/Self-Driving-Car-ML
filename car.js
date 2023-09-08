@@ -31,6 +31,8 @@ class Car {
 		this.sensor.update(roadBorders)
 	}
 
+	
+
 	draw(ctx) {
 		ctx.save()
 		// отрисовка машинки по заданным координатам
