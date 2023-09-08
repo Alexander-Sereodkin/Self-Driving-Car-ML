@@ -32,7 +32,7 @@ class Sensor {
 	#getReading(ray, roadBorders) {
 		const touches = []
 
-		for (let i = 0; i < this.roadBorders; i++) {
+		for (let i = 0; i < roadBorders.length; i++) {
 			// Получаем пересечения лучей-датчиков и borders
 			const touch = getIntersection(
 				ray[0],
@@ -84,13 +84,28 @@ class Sensor {
 	draw(ctx) {
 		// Отрисовка лучей-датчиков
 		for (let i = 0; i < this.rayCount; i++) {
+			let end = this.rays[i][1]
+			if(this.reading[i]){
+				end=this.reading[i]
+			}
 			ctx.beginPath()
 			ctx.lineWidth = 2
 			ctx.strokeStyle = 'yellow'
 			// Начало луча
 			ctx.moveTo(this.rays[i][0].x, this.rays[i][0].y)
 			// Конец луча
-			ctx.lineTo(this.rays[i][1].x, this.rays[i][1].y)
+			ctx.lineTo(end.x, end.y)
+			ctx.stroke()
+
+
+
+			ctx.beginPath()
+			ctx.lineWidth = 2
+			ctx.strokeStyle = 'black'
+			// Начало луча
+			ctx.moveTo(this.rays[i][1].x, this.rays[i][1].y)
+			// Конец луча
+			ctx.lineTo(end.x, end.y)
 			ctx.stroke()
 		}
 	}
